@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import RegisterView, ProductViewSet, PublicProductListView , CustomTokenObtainPairView
+from .views import RegisterView, ProductViewSet, PublicProductListView , CustomTokenObtainPairView, ProductDetailView
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -17,6 +17,7 @@ urlpatterns = [
     path('token/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('products/public/', PublicProductListView.as_view(), name='public_products'),
+    path('products/<int:pk>/', ProductDetailView.as_view(), name='product_detail'),
 ]
 # Include the router's URLs in the urlpatterns
 urlpatterns += router.urls

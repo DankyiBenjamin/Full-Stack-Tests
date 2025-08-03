@@ -84,6 +84,18 @@ function Register() {
           />
         </div>
 
+         <div>
+        <label>Phone Number:</label><br />
+        <input
+            type="text"
+            name="phone_number"
+            value={formData.phone_number}
+            onChange={handleChange}
+            required
+        />
+        </div>
+
+
         <div>
           <label>Password:</label><br />
           <input

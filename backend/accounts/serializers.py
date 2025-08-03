@@ -15,7 +15,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'password', 'password2', 'is_farmer')
+        fields = ('username', 'email', 'password', 'password2', 'is_farmer', 'phone_number')
 
     def validate(self, data):
         if data['password'] != data['password2']:
@@ -32,13 +32,17 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 class ProductSerializer(serializers.ModelSerializer):
     """
-    Serializer for the Product model.
+    Serializer for the Product model including farmer contact info.
     """
+    farmer_name = serializers.CharField(source='farmer.username', read_only=True)
+    farmer_email = serializers.EmailField(source='farmer.email', read_only=True)
+    farmer_phone = serializers.CharField(source='farmer.phone_number', read_only=True)
+
     class Meta:
         model = Product
-        fields = '__all__'
+        fields = '__all__'  # includes original fields
         read_only_fields = ['farmer', 'created_at']
-    
+
     def create(self, validated_data):
         return Product.objects.create(**validated_data)
     

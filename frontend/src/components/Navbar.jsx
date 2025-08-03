@@ -18,7 +18,13 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      <h3 className="navbar-title">🌾 FarmDirect</h3>
+      <h3
+  className="navbar-title"
+  onClick={() => navigate('/marketplace')}
+  style={{ cursor: 'pointer' }}
+>
+  🌾 FarmDirect
+</h3>
       <div className="nav-links">
         {isLoggedIn ? (
           <>

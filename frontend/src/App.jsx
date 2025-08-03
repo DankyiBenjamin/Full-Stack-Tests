@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import ProductUpload from './pages/ProductUpload';
 import Marketplace  from './pages/MarketPlace';
 import Navbar from './components/Navbar';
+import ProductDetail from './pages/ProductDetail';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Route path="/dashboard" element={<div>Welcome to the dashboard!</div>} />
       <Route path="/products" element={<ProductUpload />} />
       <Route path="/marketplace" element={<Marketplace />} />
+      <Route path="/product/:id" element={<ProductDetail />} />
 
     </Routes>
     </>
