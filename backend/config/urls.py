@@ -21,5 +21,5 @@ from django.http import JsonResponse
 urlpatterns = [
     path('admin/', admin.site.urls),
      path('api/ping/', lambda request: JsonResponse({'message': 'pong'})),
-    #  path('api/', include('your_app.urls')),
+     path('api/auth/', include('accounts.urls')),
 ]
