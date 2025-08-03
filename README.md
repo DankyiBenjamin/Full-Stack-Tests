@@ -1,120 +1,137 @@
-# Ideation Axis - 24-Hour Full-Stack Developer Challenge
+# 🌾 FarmDirect – A Marketplace for Farmers and Buyers
 
-## Overview
-Welcome to the Ideation Axis Full-Stack Developer Assessment. You have **exactly 24 hours** from the time you receive email to access this repository to complete ONE of the two challenges below. This test evaluates your ability to build functional web applications efficiently.
-
-## Challenge Selection
-**Choose ONE of the following challenges to complete:**
-
-### Option A: AgriTech Marketplace - "FarmDirect"
-### Option B: Venture Capital Platform - "DealTracker"
-
-## What We're Looking For
-- **Completion**: Can you deliver working core features?
-- **Code Quality**: Is your code clean and maintainable?
-- **Problem Solving**: How do you handle requirements and bugs?
-- **User Focus**: Do you think about the end user experience?
-- **Time Management**: Can you prioritize and deliver on time?
-
-## Sample Test Data
-We recommend creating seed data for testing:
-- **AgriTech**: 2-3 farmer accounts, 5-10 products across categories
-- **VC Platform**: 2-3 VC accounts, 1-2 entrepreneur accounts, 5-8 sample deals
-
-## Support
-- Use any online resources, documentation
-- No collaboration with others
-- Focus on working software over perfect code
+**FarmDirect** is a full-stack web application that allows **farmers to register, upload products**, and **connect with buyers** who can browse and view product details.
 
 ---
 
-## Technical Requirements
+## 📦 Technology Stack
 
-### Mandatory Stack
-- **Frontend**: React, Vue.js, or Angular
-- **Backend**: Node.js, Python (Django/Flask/FastApi)
-- **Database**: MySQL, PostgreSQL, or MongoDB
-- **Authentication**: JWT or session-based
+### 🔙 Backend (Django + DRF)
+- Django 4+
+- Django REST Framework (DRF)
+- JWT Authentication (`djangorestframework-simplejwt`)
+- PostgreSQL (via Railway)
+- CORS Headers
+- Custom User Model (with farmer role)
 
-### Expected Features
-- Responsive design
-- Form validation
-- Error handling
-- Basic security measures
-- Clean, intuitive UI
+### 🌐 Frontend (React + Vite)
+- React 18+
+- React Router
+- Axios
+- Vite
+- Custom CSS (no UI framework)
 
-## Evaluation Criteria
+---
 
-### Functionality (40%)
-- All core requirements working
-- Proper user flows
-- Bug-free basic operations
-- Data persistence
+## 🚀 Setup Instructions
 
-### Code Quality (25%)
-- Clean, readable code
-- Proper file organization
-- Basic error handling
-- Consistent coding style
+### Prerequisites
+- Python 3.10+ & pip
+- Node.js & npm
+- Railway account (for DB hosting)
 
-### User Experience (20%)
-- Intuitive interface design
-- Responsive layout
-- Smooth user interactions
-- Professional appearance
+---
 
-### Technical Implementation (15%)
-- Proper API design
-- Database structure
-- Security considerations
-- Performance basics
+### 1. Clone the Repository
+```bash
+git clone https://github.com/yourusername/farmdirect.git
+cd farmdirect
+```
 
-## Submission Requirements
+---
 
-### 1. Code Repository
-- Fork this repository
-- Commit your progress regularly
-- Include a detailed README with:
-  - Setup instructions
-  - Technology choices
-  - Features implemented
+### 2. Backend Setup (Django)
+```bash
+cd backend
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
 
-### 2. Live Demo (Strongly Recommended)
-- Deploy to Heroku, Vercel, Netlify, or similar
-- Provide working URL with test accounts
-- **Hosting will significantly improve your evaluation**
+#### Configure `.env` for Railway DB
+```env
+DATABASE_URL=your_railway_postgres_url
+SECRET_KEY=your_secret_key
+DEBUG=True
+```
 
-### 3. Video Demo (Alternative)
-- screen recording
-- Show key features working
-  
-### 4. Documentation
-- Clear setup instructions
-- API endpoints list
-- Test user credentials
-- Known limitations
+#### Migrate & Run Server
+```bash
+python manage.py makemigrations
+python manage.py migrate
+python manage.py runserver
+```
 
-## Getting Started
+---
 
-### Time Management Suggestions
-- **Hour 24**: Final submission
+### 3. Frontend Setup (React + Vite)
+```bash
+cd ../frontend
+npm install
+npm run dev
+```
 
-### Priority Order
-1. User authentication and basic UI
-2. Core data models and CRUD operations
-3. Main user workflows
-4. Basic styling and responsiveness
-5. Testing and deployment
-6. Bonus features (if time permits)
+App will run at `http://localhost:5173`.
 
-## Submission Timeline
-- **Start**: Read and complete instructions to the project choice. 
-- **Duration**: Exactly 24 hours
-- **End**: Push final code to your own repo, and send any deliverables to https://forms.office.com/r/WqxJ7r9FDW
-- **No extensions or late submissions accepted**
+---
 
+## ✅ Features Implemented
 
+### 👥 Authentication
+- User registration with `is_farmer` toggle
+- JWT-based login and token storage
+- Role-based navbar links
 
-**Good luck! Show us what you can build in 24 hours.**
+### 🌾 For Farmers
+- Upload products (name, price, category, description)
+- View their own products
+- Contact info shown to buyers (email + phone)
 
-*Remember: A working application with core features is better than a perfect incomplete solution.*
+### 🛒 For Buyers
+- Browse public marketplace
+- Filter products by category
+- Click to view product detail
+- See farmer's name, contact info
+
+### 🧭 Navigation
+- Dynamic Navbar (My Products, Marketplace, My Info, Logout)
+- Route protection using JWT
+
+---
+
+## ⚠️ Known Limitations
+
+- No image uploads for products (text data only)
+- No buyer-to-farmer messaging system yet
+- Phone number not verified
+- No admin dashboard
+- Minimal form validation UX (e.g., password mismatch warning is basic)
+
+---
+
+## 📽️ Demo
+
+A screen recording is included in the submission to show:
+
+- Registration & login
+- Farmer dashboard
+- Product upload
+- Marketplace filtering
+- Detail view with farmer contact
+
+---
+
+## 📁 Folder Structure
+
+```
+farmdirect/
+├── backend/       # Django project
+├── frontend/      # React + Vite frontend
+└── README.md
+```
+
+---
+
+## ✨ Contributors
+
+- [Dankyi Ben-Oni Ofosu ](https://github.com/DankyiBenjamin) – Full-stack developer
