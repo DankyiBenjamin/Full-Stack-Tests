@@ -19,18 +19,25 @@ function Navbar() {
   return (
     <nav className="navbar">
       <h3
-  className="navbar-title"
-  onClick={() => navigate('/marketplace')}
-  style={{ cursor: 'pointer' }}
->
-  🌾 FarmDirect
-</h3>
+        className="navbar-title"
+        onClick={() => navigate('/marketplace')}
+        style={{ cursor: 'pointer' }}
+      >
+        🌾 FarmDirect
+      </h3>
+
       <div className="nav-links">
         {isLoggedIn ? (
           <>
-            {isFarmer && <Link className="nav-link" to="/products">My Products</Link>}
+            <span className="nav-user">👋 Hi, {user.username}</span>
+            <Link className="nav-link" to="/profile">My Info</Link>
+            {isFarmer && (
+              <Link className="nav-link" to="/products">My Products</Link>
+            )}
             <Link className="nav-link" to="/marketplace">Marketplace</Link>
-            <button className="logout-button" onClick={handleLogout}>Logout</button>
+            <button className="logout-button" onClick={handleLogout}>
+              Logout
+            </button>
           </>
         ) : (
           <>

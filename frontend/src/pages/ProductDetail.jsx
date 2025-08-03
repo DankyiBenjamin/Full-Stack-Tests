@@ -17,7 +17,7 @@ function ProductDetail() {
   return (
     <div className="container">
       <h2>{product.name}</h2>
-      <p><strong>Category:</strong> {product.category}</p>
+      <p><strong>Category:</strong> {product.category_name || product.category}</p>
       <p><strong>Price:</strong> ${product.price}</p>
       <p>{product.description}</p>
 

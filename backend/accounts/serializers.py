@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User , Product
+from .models import User , Product, Category
 from django.contrib.auth.password_validation import validate_password
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.contrib.auth import get_user_model
@@ -57,3 +57,8 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         token['is_farmer'] = user.is_farmer
 
         return token
+    
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = '__all__'

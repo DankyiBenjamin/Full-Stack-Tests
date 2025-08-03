@@ -4,6 +4,8 @@ import './ProductUpload.css';
 
 function ProductUpload() {
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+
   const [formData, setFormData] = useState({
     name: '',
     description: '',
@@ -14,11 +16,18 @@ function ProductUpload() {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
 
-  // Fetch current user's products
+  // Fetch user's products
   useEffect(() => {
     API.get('auth/products/?view=mine')
       .then(res => setProducts(res.data))
       .catch(() => setError('Could not fetch products'));
+  }, []);
+
+  // Fetch categories for dropdown
+  useEffect(() => {
+    API.get('auth/categories/')
+      .then(res => setCategories(res.data))
+      .catch(() => setError('Could not load categories'));
   }, []);
 
   const handleChange = (e) => {
@@ -33,6 +42,7 @@ function ProductUpload() {
       setProducts(prev => [res.data, ...prev]);
       setFormData({ name: '', description: '', price: '', category: '' });
       setSuccess(true);
+      setError(null);
       setTimeout(() => setSuccess(false), 2000);
     } catch (err) {
       setError('Error submitting product');
@@ -74,12 +84,17 @@ function ProductUpload() {
         />
 
         <label>Category</label>
-        <input
-          type="text"
+        <select
           name="category"
           value={formData.category}
           onChange={handleChange}
-        />
+          required
+        >
+          <option value="">-- Select Category --</option>
+          {categories.map(cat => (
+            <option key={cat.id} value={cat.id}>{cat.name}</option>
+          ))}
+        </select>
 
         <button type="submit">Upload Product</button>
       </form>
@@ -91,7 +106,7 @@ function ProductUpload() {
           <div key={product.id} className="product-card">
             <h4>{product.name}</h4>
             <p><strong>Price:</strong> ${product.price}</p>
-            <p><strong>Category:</strong> {product.category}</p>
+            <p><strong>Category:</strong> {product.category_name || product.category}</p>
             {product.description && <p>{product.description}</p>}
           </div>
         ))}

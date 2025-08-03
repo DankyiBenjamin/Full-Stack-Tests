@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from rest_framework import generics , viewsets, permissions
-from .models import User, Product
-from .serializers import RegisterSerializer , ProductSerializer , CustomTokenObtainPairSerializer
+from rest_framework.generics import ListAPIView
+from .models import User, Product, Category
+from .serializers import RegisterSerializer , ProductSerializer , CustomTokenObtainPairSerializer , CategorySerializer
 from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.views import TokenObtainPairView
 
@@ -52,6 +53,11 @@ class PublicProductListView(generics.ListAPIView):
 class ProductDetailView(generics.RetrieveAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
+
+class CategoryListView(ListAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
 
 
 class CustomTokenObtainPairView(TokenObtainPairView):

@@ -5,9 +5,13 @@ import ProductCard from '../components/ProductCard';
 
 function Marketplace() {
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('');
   const [error, setError] = useState(null);
+
   const token = localStorage.getItem('access_token');
 
+  // Fetch products
   useEffect(() => {
     if (token) {
       API.get('auth/products/')
@@ -18,6 +22,27 @@ function Marketplace() {
         });
     }
   }, [token]);
+
+  // Fetch categories
+  useEffect(() => {
+    if (token) {
+      API.get('auth/categories/')
+        .then(res => setCategories(res.data))
+        .catch(err => {
+          console.error(err);
+          setError('Failed to load categories.');
+        });
+    }
+  }, [token]);
+
+  const handleCategoryChange = (e) => {
+    setSelectedCategory(e.target.value);
+  };
+
+  // Filter products by selected category
+  const filteredProducts = selectedCategory
+    ? products.filter(product => String(product.category) === selectedCategory)
+    : products;
 
   if (!token) {
     return (
@@ -37,11 +62,29 @@ function Marketplace() {
 
       {error && <p style={{ color: 'red' }}>{error}</p>}
 
-      {products.length === 0 ? (
-        <p>No products available.</p>
+      {/* Category filter dropdown */}
+      <div>
+        <label htmlFor="category-select"><strong>Filter by Category:</strong></label>
+        <select
+          id="category-select"
+          value={selectedCategory}
+          onChange={handleCategoryChange}
+          style={{ marginLeft: '10px' }}
+        >
+          <option value="">All Categories</option>
+          {categories.map(cat => (
+            <option key={cat.id} value={cat.id}>
+              {cat.name}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {filteredProducts.length === 0 ? (
+        <p>No products found in this category.</p>
       ) : (
         <div style={styles.grid}>
-          {products.map(product => (
+          {filteredProducts.map(product => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
