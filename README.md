@@ -34,7 +34,7 @@
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/yourusername/farmdirect.git
+git clone https://github.com/DankyiBenjamin/Full-Stack-Tests
 cd farmdirect
 ```
 
