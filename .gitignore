@@ -1,0 +1,76 @@
+# ------------------------
+# General
+# ------------------------
+*.log
+*.pot
+*.pyc
+__pycache__/
+env/
+venv/
+.env
+.DS_Store
+
+# ------------------------
+# Python / Django
+# ------------------------
+*.sqlite3
+db.sqlite3
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+develop-eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.coverage
+.tox/
+.cache/
+.pytest_cache/
+.mypy_cache/
+
+# ------------------------
+# PostgreSQL Dumps
+# ------------------------
+*.dump
+*.sql
+
+# ------------------------
+# React (Frontend)
+# ------------------------
+frontend/node_modules/
+frontend/.pnp/
+frontend/.pnp.js
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+frontend/build/
+frontend/dist/
+
+# ------------------------
+# VS Code / IDEs
+# ------------------------
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+*.swp
+*.bak
+*~
+
+# ------------------------
+# Mac / Linux / Windows
+# ------------------------
+*.swp
+ehthumbs.db
+Icon?
+Thumbs.db
